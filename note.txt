@@ -1,0 +1,6 @@
+1. Namaste React Web Series code repository
+	https://github.com/namastedev/namaste-react
+2. NetflixGPT Project Github repository -
+	https://github.com/akshaymarch7/netflix-gpt
+3. YouTube Project GitHub repository -
+	https://github.com/akshaymarch7/namaste-youtube
