@@ -1,22 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-/**
- * <div id="parent">
- *     <div id="child">
- *          <h1>H1 Tag</h1>
- *          <h2>H2 Tag</h2>
- *     </div>
- * </div>
- */
 
-const heading = React.createElement("h1", { id: "heading" }, "Hello React");
-const parent = React.createElement(
-    "div",
-    { id: "parent" },
-    React.createElement("div", { id: "child" }, [
-        React.createElement("h1", {}, "H1 Tag"),
-        React.createElement("h2", {}, "H2 Tag"),
-    ])
+//React.createElement => ReactElement-JS Object => HTMLElement(render)
+
+// const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
+
+// console.log(heading);
+//JSX React
+//JSX => React.createElement => ReactElement-JS Object => HTMLElement(render)
+// const JSXHeading = <h1 id="heading">Namaste React using JSX</h1>; // React Element
+const JSXHeading = () => (
+    <div>
+        <h1 id="heading">Namaste React using multiple line</h1>
+    </div>
 );
+
+const Title = (
+    <div>
+        <h1 id="heading">Namaste React Title</h1>
+    </div>
+);
+
+const HeadingComponent = () => {
+    return (
+        <div id="container">
+            <JSXHeading />
+            {/* <JSXHeading></JSXHeading> */}
+            {Title}
+            <h1 className="heading">Namaste React Functional Component</h1>
+        </div>
+    );
+};
+
+// console.log(JSXHeading);
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+
+// root.render(heading);
+// root.render(JSXHeading);
+root.render(<HeadingComponent />);

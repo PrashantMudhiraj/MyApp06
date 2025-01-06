@@ -27,3 +27,16 @@ Documentation : https://parceljs.org/
 Documentation : https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z
 
     - It will give the info of browsers list and their worldwide usage
+
+## IMPORTANT
+
+    -  React : React.createElement => ReactElement-JS Object => HTMLElement(render)
+    -  JSX : JSX => React.createElement => ReactElement-JS Object => HTMLElement(render)
+    -  Babel(Transpiler) will convert the JSX to React Element
+
+## React Component
+
+-   **There are two types of components** :
+    1. _Class based component_
+    2. _Functional based component_ : It is a function that returns a piece of JSX code or A Function that return a JavaScript function (Just a normal JS function)
+-   **Component composition** : Composing two components into one another or Process of combining smaller, reusable components together to create a large, complex component
