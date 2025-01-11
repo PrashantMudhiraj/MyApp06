@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import axios from "axios";
 
 // import restroData from "../Data/restro.json";
@@ -7,6 +7,7 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
     const [restroList, setRestroList] = useState([]);
+    const [filteredRestro, setFilterRestro] = useState([]);
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
@@ -26,6 +27,7 @@ const Body = () => {
             data[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         console.log(finalRestroData.length);
         setRestroList(finalRestroData);
+        setFilterRestro(finalRestroData);
     };
 
     // if (restroList.length === 0) {
@@ -47,6 +49,13 @@ const Body = () => {
                         className="search-button"
                         onClick={() => {
                             console.log(searchText);
+                            const filterRestro = restroList.filter((restro) => {
+                                // console.log(restro.info.name);
+                                return restro?.info?.name
+                                    .toLowerCase()
+                                    .includes(searchText.toLowerCase());
+                            });
+                            setFilterRestro(filterRestro);
                         }}
                     >
                         Search
@@ -59,16 +68,21 @@ const Body = () => {
                             (restro) => restro.info.avgRating > 4.4
                         );
                         console.log(filteredRestroList.length);
-                        setRestroList(filteredRestroList);
+                        setFilterRestro(filteredRestroList);
                     }}
                 >
                     Top Rated Restaurants
                 </button>
             </div>
             <div className="res-container">
-                {restroList.map((resObj) => (
-                    <RestaurantCard key={resObj.info.id} resData={resObj} />
-                ))}
+                {filteredRestro.length === 0
+                    ? "No Results Found"
+                    : filteredRestro.map((resObj) => (
+                          <RestaurantCard
+                              key={resObj.info.id}
+                              resData={resObj}
+                          />
+                      ))}
             </div>
         </div>
     );
