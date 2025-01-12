@@ -17,10 +17,14 @@ const Body = () => {
 
     const fetchData = async () => {
         const response = await axios.get(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
         );
         const data = response.data.data.cards.filter(
-            (card) => card?.card?.card?.id === "top_brands_for_you"
+            (card) =>
+                ["top_brands_for_you", "restaurant_grid_listing"].includes(
+                    card?.card?.card?.id
+                )
+            // card?.card?.card?.id === "top_brands_for_you"
         );
         // console.log(data[0].card.card.gridElements.infoWithStyle.restaurants);
         const finalRestroData =
@@ -48,12 +52,18 @@ const Body = () => {
                     <button
                         className="search-button"
                         onClick={() => {
-                            console.log(searchText);
+                            console.log(
+                                searchText.toLowerCase().replaceAll(" ", "")
+                            );
                             const filterRestro = restroList.filter((restro) => {
-                                // console.log(restro.info.name);
                                 return restro?.info?.name
                                     .toLowerCase()
-                                    .includes(searchText.toLowerCase());
+                                    .replaceAll(" ", "")
+                                    .includes(
+                                        searchText
+                                            .toLowerCase()
+                                            .replaceAll(" ", "")
+                                    );
                             });
                             setFilterRestro(filterRestro);
                         }}
