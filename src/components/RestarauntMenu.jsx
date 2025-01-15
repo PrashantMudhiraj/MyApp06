@@ -8,7 +8,7 @@ import Shimmer from "./Shimmer";
 const RestaurantsMenu = () => {
     const { resId } = useParams();
     const [restroData, setRestroData] = useState(null);
-    console.log(resId);
+    // console.log(resId);
 
     useEffect(() => {
         fetchMenu();
@@ -25,7 +25,7 @@ const RestaurantsMenu = () => {
     const { name, costForTwoMessage, avgRating, sla, totalRatingsString } =
         restroData?.data?.cards[2]?.card?.card?.info;
 
-    console.log(restroData);
+    // console.log(restroData);
 
     const foodItems =
         restroData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2]
