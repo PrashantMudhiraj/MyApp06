@@ -1,16 +1,18 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router";
 import axios from "axios";
 
 // import restroData from "../Data/restro.json";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { CORS_PROXY, RESTRO_URL } from "../utils/constants";
-import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
     const [restroList, setRestroList] = useState([]);
     const [filteredRestro, setFilterRestro] = useState([]);
     const [searchText, setSearchText] = useState("");
+    const onlineStatus = useOnlineStatus();
 
     useEffect(() => {
         fetchData();
@@ -34,9 +36,9 @@ const Body = () => {
         setFilterRestro(finalRestroData);
     };
 
-    // if (restroList.length === 0) {
-    //     return <Shimmer />;
-    // }
+    if (!onlineStatus) {
+        return <h3>You're offline!!</h3>;
+    }
     return restroList.length === 0 ? (
         <Shimmer />
     ) : (

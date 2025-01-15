@@ -7,7 +7,7 @@ class UserClass extends Component {
         // console.log(this.props);
         this.state = {
             userInfo: {
-                name: "Dummy Nmae",
+                name: "Dummy Name",
                 location: "Location",
                 bio: "Bio",
             },
