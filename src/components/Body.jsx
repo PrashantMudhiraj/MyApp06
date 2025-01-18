@@ -7,6 +7,7 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { CORS_PROXY, RESTRO_URL } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { withDiscountLabel } from "./RestaurantCard";
 
 const Body = () => {
     const [restroList, setRestroList] = useState([]);
@@ -31,10 +32,11 @@ const Body = () => {
         // console.log(data[0].card.card.gridElements.infoWithStyle.restaurants);
         const finalRestroData =
             data[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        console.log(finalRestroData.length);
         setRestroList(finalRestroData);
         setFilterRestro(finalRestroData);
     };
+
+    const RestaurantCardWithDiscount = withDiscountLabel(RestaurantCard);
 
     if (!onlineStatus) {
         return <h3>You're offline!!</h3>;
@@ -43,16 +45,16 @@ const Body = () => {
         <Shimmer />
     ) : (
         <div className="body">
-            <div className="filter">
-                <div className="search">
+            <div className=" flex pt-28 pb-12 justify-between">
+                <div className="pl-3">
                     <input
-                        className="search-box"
+                        className="border border-solid border-black"
                         type="text"
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
                     />
                     <button
-                        className="search-button"
+                        className="px-4 py-0.5 bg-red-300 mx-4 hover:bg-red-400 rounded-sm"
                         onClick={() => {
                             console.log(
                                 searchText.toLowerCase().replaceAll(" ", "")
@@ -73,29 +75,41 @@ const Body = () => {
                         Search
                     </button>
                 </div>
-                <button
-                    className="filter-btn"
-                    onClick={() => {
-                        let filteredRestroList = restroList.filter(
-                            (restro) => restro.info.avgRating > 4.4
-                        );
-                        console.log(filteredRestroList.length);
-                        setFilterRestro(filteredRestroList);
-                    }}
-                >
-                    Top Rated Restaurants
-                </button>
+                {/* <div>
+                    <h1>Foodie</h1>
+                </div> */}
+                <div className="pr-3">
+                    <button
+                        className="px-4 py-0.5 bg-red-300 mx-4 hover:bg-red-400 rounded-sm"
+                        onClick={() => {
+                            let filteredRestroList = restroList.filter(
+                                (restro) => restro.info.avgRating > 4.4
+                            );
+                            console.log(filteredRestroList.length);
+                            setFilterRestro(filteredRestroList);
+                        }}
+                    >
+                        Top Rated Restaurants
+                    </button>
+                </div>
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap mx-4">
                 {filteredRestro.length === 0
                     ? "No Results Found"
                     : filteredRestro.map((resObj) => (
                           <Link
                               key={resObj?.info?.id}
                               to={"/restaurant/" + resObj?.info?.id}
-                              className="link"
+                              //   className="link"
                           >
-                              <RestaurantCard resData={resObj} />
+                              {resObj.info.aggregatedDiscountInfoV3
+                                  ?.discountTag ? (
+                                  <RestaurantCardWithDiscount
+                                      resData={resObj}
+                                  />
+                              ) : (
+                                  <RestaurantCard resData={resObj} />
+                              )}
                           </Link>
                       ))}
             </div>

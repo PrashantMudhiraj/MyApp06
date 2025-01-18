@@ -13,7 +13,7 @@ const RestaurantsMenu = () => {
         restroData?.data?.cards[2]?.card?.card?.info;
 
     // console.log(restroData);
-
+    console.log(restroData);
     const foodItems =
         restroData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2]
             ?.card?.card?.itemCards;
@@ -21,7 +21,7 @@ const RestaurantsMenu = () => {
     // console.log("-------", foodItems);
 
     return (
-        <div className="restro-card">
+        <div className="pt-28">
             <h1>{name}</h1>
             <h4>
                 {avgRating} -({totalRatingsString}) - {costForTwoMessage}

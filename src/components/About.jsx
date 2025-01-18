@@ -24,8 +24,7 @@ class About extends Component {
             location: "Hyd Class",
         };
         return (
-            <div>
-                <h1>About</h1>
+            <div className=" flex pt-28 pb-12">
                 {/* <User /> */}
                 <UserClass details={details_1} />
                 {/* <UserClass details={details_2} /> */}

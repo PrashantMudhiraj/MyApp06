@@ -7,37 +7,41 @@ const Header = () => {
     const [btnName, setBtnName] = useState("Login");
     const onlineStatus = useOnlineStatus();
     return (
-        <div className="header">
-            <div className="logo-container">
-                <img className="logo" src={foodLogo} alt="Hey Foodie" />
+        <div className=" flex flex-wrap justify-between  bg-red-100 border-solid shadow-md fixed t-0 w-full">
+            <div className="m-2">
+                <img className="w-16" src={foodLogo} alt="Hey Foodie" />
             </div>
-            <div className="nav-items">
-                <ul>
-                    <li>Online Status : {onlineStatus ? "🟢" : "🔴"}</li>
+            <div className="flex items-center">
+                <ul className="flex p-4 m-4">
+                    <li className="px-4">
+                        Online Status : {onlineStatus ? "🟢" : "🔴"}
+                    </li>
 
                     <li>
-                        <Link to="/" className="link">
+                        <Link to="/" className="px-4">
                             Home
                         </Link>
                     </li>
                     <li>
-                        <Link to="/contact" className="link">
+                        <Link to="/contact" className="px-4">
                             Contact Us
                         </Link>
                     </li>
                     <li>
-                        <Link to="/about" className="link">
+                        <Link to="/about" className="px-4">
                             About Us
                         </Link>
                     </li>
-                    <li>Cart</li>
+                    <li className="pr-4">
+                        <Link>Cart</Link>
+                    </li>
                     <li>
-                        <Link to="/grocery" className="link">
+                        <Link to="/grocery" className="px-4">
                             Grocery
                         </Link>
                     </li>
                     <button
-                        className="login-btn"
+                        className="px-4"
                         onClick={() =>
                             btnName === "Login"
                                 ? setBtnName("Logout")

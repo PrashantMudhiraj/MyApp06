@@ -34,7 +34,7 @@ class UserClass extends Component {
         console.log(this.props.details.name + "Child render");
         const { name, location, bio } = this.state.userInfo;
         return (
-            <div className="user-card">
+            <div>
                 <h2>Name : {name}</h2>
                 <h3>Location : {location}</h3>
                 <h4>Bio : {bio}</h4>
