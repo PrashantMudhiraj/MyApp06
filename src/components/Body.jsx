@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router";
 import axios from "axios";
 
@@ -8,6 +8,7 @@ import Shimmer from "./Shimmer";
 import { CORS_PROXY, RESTRO_URL } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { withDiscountLabel } from "./RestaurantCard";
+import userContext from "../utils/userContext";
 
 const Body = () => {
     const [restroList, setRestroList] = useState([]);
@@ -37,6 +38,7 @@ const Body = () => {
     };
 
     const RestaurantCardWithDiscount = withDiscountLabel(RestaurantCard);
+    const { loggedInUser, setUserName } = useContext(userContext);
 
     if (!onlineStatus) {
         return <h3>You're offline!!</h3>;
@@ -76,7 +78,14 @@ const Body = () => {
                     </button>
                 </div>
                 {/* <div>
-                    <h1>Foodie</h1>
+                    <label>UserName : </label>
+                    <input
+                        className="border border-black pl-1"
+                        value={loggedInUser}
+                        onChange={(e) => {
+                            setUserName(e.target.value);
+                        }}
+                    />
                 </div> */}
                 <div className="pr-3">
                     <button

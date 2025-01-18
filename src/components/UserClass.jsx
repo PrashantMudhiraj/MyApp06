@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import userContext from "../utils/userContext";
 
 class UserClass extends Component {
     constructor(props) {
@@ -35,7 +36,14 @@ class UserClass extends Component {
         const { name, location, bio } = this.state.userInfo;
         return (
             <div>
-                <h2>Name : {name}</h2>
+                <h1>
+                    <userContext.Consumer>
+                        {({ loggedInUser }) => (
+                            <h1> User Name : {loggedInUser}</h1>
+                        )}
+                    </userContext.Consumer>
+                </h1>
+                {/* <h2>Name : {name}</h2> */}
                 <h3>Location : {location}</h3>
                 <h4>Bio : {bio}</h4>
             </div>

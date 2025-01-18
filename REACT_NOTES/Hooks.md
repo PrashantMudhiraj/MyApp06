@@ -11,3 +11,15 @@
     - Hooks need to be called only inside react component/functional component.
     - Declare Hooks at the top/beginning of functional component.
     - Never create Hooks inside conditions.
+
+## Props Drilling
+
+-   Parent Comp (dummy = "test")
+    -   Child Comp
+        -   Sub Child 1 - Sub Child 2
+            -   x component - Sub x child 2 comp
+                -   y component (dummy = "test)
+
+## useContext createContext
+
+    - To avoid props drilling issue we use React Context, by using this we can maintain our state variables Globally. So, It can be accessible anywhere in our app.
