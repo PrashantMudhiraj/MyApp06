@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router";
+import { useSelector } from "react-redux";
+
 import foodLogo from "../../file.png";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/userContext";
@@ -8,6 +10,8 @@ const Header = () => {
     const [btnName, setBtnName] = useState("Login");
     const onlineStatus = useOnlineStatus();
     const { loggedInUser } = useContext(userContext);
+
+    const cartItems = useSelector((store) => store.cart.items);
 
     return (
         <div className=" flex flex-wrap justify-between  bg-red-100 border-solid shadow-md fixed t-0 w-full">
@@ -35,8 +39,10 @@ const Header = () => {
                             About Us
                         </Link>
                     </li>
-                    <li className="pr-4">
-                        <Link>Cart</Link>
+                    <li>
+                        <Link to="/cart" className="pr-4">
+                            Cart ({cartItems.length} Items)
+                        </Link>
                     </li>
                     <li>
                         <Link to="/grocery" className="px-4">

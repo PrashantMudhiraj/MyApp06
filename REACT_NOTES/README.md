@@ -48,3 +48,9 @@ Documentation : https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z
     - It uses Diff and Reconciliation algorithm (React Fiber) to make React so fast. when new virtual DOM is created this algo compare the existing virtual DOM with new virtual DOM, then it will update the Actual DOM.
     - Actual DOM will update on every render.
     - UI layer and Data layer always will be in sync.
+
+| Syntax                          | Execution on Render    | Execution on Click      | Use Case                                              |
+| ------------------------------- | ---------------------- | ----------------------- | ----------------------------------------------------- |
+| `onClick={handleClick}`         | No                     | Calls `handleClick`     | Simple handlers with no arguments.                    |
+| `onClick={() => handleClick()}` | Creates a new function | Calls `handleClick`     | Use when passing arguments or controlling invocation. |
+| `onClick={handleClick()}`       | Calls `handleClick`    | Depends on return value | Avoid unless `handleClick` returns a function.        |
