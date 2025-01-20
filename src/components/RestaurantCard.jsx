@@ -5,6 +5,7 @@ import userContext from "../utils/userContext.js";
 
 const RestaurantCard = (props) => {
     const { resData } = props;
+
     const { name, cuisines, avgRating, cloudinaryImageId, sla, costForTwo } =
         resData?.info;
 
@@ -29,8 +30,22 @@ const RestaurantCard = (props) => {
 };
 
 export const withDiscountLabel = (RestaurantCard) => {
+    // const RestroHOC = (props) => {
+    //     return (
+    //         <div>
+    //             <label className="absolute p-1 bg-green-500 rounded-md font-medium">
+    //                 Discount available
+    //             </label>
+    //             <RestaurantCard {...props} />
+    //         </div>
+    //     );
+    // };
+    // return RestroHOC;
+
     return (props) => {
+        // first function call return
         return (
+            // second function call return JSX (HOC)
             <div>
                 <label className="absolute p-1 bg-green-500 rounded-md font-medium">
                     Discount available

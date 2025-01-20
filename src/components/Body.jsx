@@ -38,6 +38,7 @@ const Body = () => {
     };
 
     const RestaurantCardWithDiscount = withDiscountLabel(RestaurantCard);
+
     const { loggedInUser, setUserName } = useContext(userContext);
 
     if (!onlineStatus) {
