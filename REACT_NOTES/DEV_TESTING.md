@@ -21,3 +21,5 @@
     - Install @testing-library/jest-dom
 
 \_\_add\_\_ -> Dunder (double underscore)
+
+## Integration Testing

@@ -52,6 +52,7 @@ const Body = () => {
                 <div className="pl-3">
                     <input
                         className="border border-solid border-black"
+                        data-testid="searchInput"
                         type="text"
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
@@ -91,6 +92,7 @@ const Body = () => {
                 <div className="pr-3">
                     <button
                         className="px-4 py-0.5 bg-red-300 mx-4 hover:bg-red-400 rounded-sm"
+                        data-testid="topRatedRestro"
                         onClick={() => {
                             let filteredRestroList = restroList.filter(
                                 (restro) => restro.info.avgRating > 4.4

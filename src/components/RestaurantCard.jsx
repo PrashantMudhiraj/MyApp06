@@ -14,7 +14,10 @@ const RestaurantCard = (props) => {
     const { loggedInUser } = useContext(userContext);
 
     return (
-        <div className="m-3 p-4 w-[220px] h-auto bg-red-50 rounded-lg shadow-lg">
+        <div
+            className="m-3 p-4 w-[220px] h-auto bg-red-50 rounded-lg shadow-lg"
+            data-testid="resCard"
+        >
             <img
                 className="w-[180px] h-36 rounded-md"
                 src={CDN_URL + cloudinaryImageId}
